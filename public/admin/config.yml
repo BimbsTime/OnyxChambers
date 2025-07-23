@@ -1,0 +1,47 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update
+
+media_folder: "images/uploads" # Media files will be stored in the repo under images/uploads
+public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
+
+# Site URL (update this with your actual domain)
+site_url: https://your-site-name.netlify.app
+
+collections:
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog Posts" # Used in the UI
+    folder: "_posts/blog" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template
+    fields: # The fields for each document
+      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Publish Date", name: "date", widget: "datetime", required: true}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Author", name: "author", widget: "string", required: true}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "Brief description for blog listing"}
+      - {label: "Tags", name: "tags", widget: "list", required: false, hint: "Add relevant tags"}
+      - {label: "Body", name: "body", widget: "markdown", required: true}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
+
+  - name: "news" # For news articles
+    label: "News Articles"
+    folder: "_posts/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "news"}
+      - {label: "Title", name: "title", widget: "string", required: true}
+      - {label: "Publish Date", name: "date", widget: "datetime", required: true}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Category", name: "category", widget: "select", options: ["Legal Updates", "Firm News", "Industry News", "Awards"], required: true}
+      - {label: "Excerpt", name: "excerpt", widget: "text", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: true}
+      - {label: "Published", name: "published", widget: "boolean", default: true}
+
+# Editorial workflow (optional - allows draft/review process)
+editorial_workflow: true
+
+# Logo for the CMS interface
+logo_url: /logo.png

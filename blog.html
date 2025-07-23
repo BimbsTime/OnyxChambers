@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onyx Chambers - Legal Insights Blog</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="blog-styles.css">
+    <!-- Include the Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="logo.png" alt="Onyx Chambers" class="logo-img">
+                </a>
+            </div>
+            <div class="navbar-links" id="navbar-links">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="practice.html">PRACTICE AREAS</a></li>
+                    <li><a href="team.html">OUR TEAM</a></li>
+                    <li><a href="blog.html" class="active">BLOG</a></li>
+                    <li><a href="news.html">NEWS</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <div class="container">
+            <h1>Legal Insights & Commentary</h1>
+            <p>Expert perspectives on law, justice, and legal developments from the team at Onyx Chambers</p>
+        </div>
+    </header>
+
+    <!-- Blog Content -->
+    <section class="blog-content">
+        <div class="container">
+            <!-- Search and Filter -->
+            <div class="blog-controls">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search articles...">
+                    <button id="search-btn">Search</button>
+                </div>
+                <div class="filter-tags">
+                    <button class="tag-filter active" data-tag="all">All</button>
+                    <button class="tag-filter" data-tag="corporate-law">Corporate Law</button>
+                    <button class="tag-filter" data-tag="litigation">Litigation</button>
+                    <button class="tag-filter" data-tag="legal-updates">Legal Updates</button>
+                </div>
+            </div>
+
+            <!-- Blog Posts Grid -->
+            <div class="blog-grid" id="blog-posts">
+                <!-- Sample blog post (remove when CMS is active) -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="hero-bg.png" alt="Sample Blog Post">
+                    </div>
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span class="author">By Siddhant Buxy</span>
+                            <span class="date">December 15, 2024</span>
+                        </div>
+                        <h3><a href="#">Understanding Corporate Compliance in 2024</a></h3>
+                        <p class="blog-excerpt">Navigate the evolving landscape of corporate compliance with our comprehensive guide to new regulations and best practices...</p>
+                        <div class="blog-tags">
+                            <span class="tag">Corporate Law</span>
+                            <span class="tag">Compliance</span>
+                        </div>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+
+                <!-- Loading state -->
+                <div class="loading" id="loading" style="display: none;">
+                    <p>Loading posts...</p>
+                </div>
+
+                <!-- No posts message -->
+                <div class="no-posts" id="no-posts" style="display: none;">
+                    <p>No blog posts found. Check back soon for legal insights and commentary.</p>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination" style="display: none;">
+                <button class="prev-btn" id="prev-btn">← Previous</button>
+                <span class="page-info" id="page-info">Page 1 of 1</span>
+                <button class="next-btn" id="next-btn">Next →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="footer-logo.png" alt="Onyx Chambers">
+                    </div>
+                    <p>Excellence in legal representation with integrity and dedication.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <div class="footer-links">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="practice.html">Practice Areas</a></li>
+                            <li><a href="team.html">Our Team</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="news.html">News</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p>📍 123 Legal Street, Law District</p>
+                        <p>📞 +1 (555) 123-4567</p>
+                        <p>✉️ info@onyxchambers.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Onyx Chambers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Blog functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize blog
+            initializeBlog();
+            
+            // Search functionality
+            const searchInput = document.getElementById('search-input');
+            const searchBtn = document.getElementById('search-btn');
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+            
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.tag-filter');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    filterPosts(this.dataset.tag);
+                });
+            });
+        });
+
+        function initializeBlog() {
+            // This will be replaced with actual CMS data fetching
+            console.log('Blog initialized - CMS integration pending');
+        }
+
+        function performSearch() {
+            const query = document.getElementById('search-input').value;
+            console.log('Searching for:', query);
+            // Implement search logic here
+        }
+
+        function filterPosts(tag) {
+            console.log('Filtering by tag:', tag);
+            // Implement filter logic here
+        }
+
+        // Netlify Identity integration
+        if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", user => {
+                if (!user) {
+                    window.netlifyIdentity.on("login", () => {
+                        document.location.href = "/admin/";
+                    });
+                }
+            });
+        }
+
+        // Mobile menu functionality (reuse from existing script)
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navbarLinks = document.getElementById('navbar-links');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navbarLinks.classList.toggle('active');
+            mobileMenuBtn.classList.toggle('active');
+        });
+
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

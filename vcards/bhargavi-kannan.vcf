@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Kannan;Bhargavi;;;
+FN:Bhargavi Kannan
+TITLE:Partner
+ORG:Onyx Chambers
+EMAIL;TYPE=WORK,INTERNET:bhargavi.kannan@onyxchambers.com
+TEL;TYPE=WORK,VOICE:+91 98765 43210
+ADR;TYPE=WORK:;;H-34, Ground Floor South Extension 1;New Delhi;Delhi;110 049;India
+URL:https://onyxchambers.com
+REV:2023-10-10T12:00:00Z
+END:VCARD

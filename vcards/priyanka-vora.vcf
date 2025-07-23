@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Vora;Priyanka;;;
+FN:Priyanka Vora
+TITLE:Partner
+ORG:Onyx Chambers
+EMAIL;TYPE=WORK,INTERNET:priyanka.vora@onyxchambers.com
+TEL;TYPE=WORK,VOICE:+91 98765 12345
+ADR;TYPE=WORK:;;H-34, Ground Floor South Extension 1;New Delhi;Delhi;110 049;India
+URL:https://onyxchambers.com
+REV:2023-10-10T12:00:00Z
+END:VCARD
